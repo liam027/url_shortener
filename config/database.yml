@@ -7,7 +7,6 @@ default: &default
 development:
   <<: *default
   database: url_shortener_development
-  user: lee
 
 test:
   <<: *default
@@ -16,5 +15,5 @@ test:
 production:
   <<: *default
   database: url_shortener_production
-  username: lee
+  username: <%= ENV['URL_SHORTENER_DB_PRODUCTION_USER'] %>
   password: <%= ENV['URL_SHORTENER_DB_PRODUCTION_PASSWORD'] %>
