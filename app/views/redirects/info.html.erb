@@ -18,9 +18,10 @@
 </div>
 
 <h2>Visitor Details</h2>
-<% @redirect.visits.each do |visitor| %>
+<% @redirect.visits.each do |visit| %>
   <div>
-    <span>ID: </span><span><%= visitor.id %></span>
-    <span>IP Address: </span><span><%= visitor.ip_address %></span>
+    <span>ID: </span><span><%= visit.id %></span>
+    <span>IP Address: </span><span><%= visit.ip_address %></span>
+    <span>Count: </span><span><%= visit.count %></span>
   </div>
 <% end %>
