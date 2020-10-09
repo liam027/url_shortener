@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_104914) do
+ActiveRecord::Schema.define(version: 2020_10_09_110726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2020_10_09_104914) do
     t.text "full_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "visits", force: :cascade do |t|
+    t.bigint "redirect_id"
+    t.string "ip_address"
+    t.integer "count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["redirect_id"], name: "index_visits_on_redirect_id"
   end
 
 end
