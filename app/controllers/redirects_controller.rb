@@ -7,18 +7,30 @@ class RedirectsController < ApplicationController
 
   def show
     @token = params[:id]
-    @full_url = Redirect.find_by_token(@token).full_url
-    redirect_to @full_url
+    @redirect = Redirect.find_by_token(@token)
+
+    # Register the visit. Create a new visit or update the count if it already
+    # exists
+    if(@redirect.visits.exists?(ip_address: request.remote_ip ))
+      @visit = @redirect.visits.find_by_ip_address(request.remote_ip)
+      @visit.update(count: @visit.count + 1)
+    else
+      @redirect.visits.create(ip_address: request.remote_ip)
+    end
+
+    redirect_to @redirect.full_url
   end
 
   def create
     @redirect = Redirect.create(url_params)
     @short_url = "#{request.base_url}/#{@redirect.token}"
+
     redirect_to new_redirect_path(short_url: @short_url)
   end
 
   def info
-
+    @redirect = Redirect.find_by_token(params[:id])
+    @short_url = "#{request.base_url}/#{@redirect.token}"
   end
 
   private
