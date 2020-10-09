@@ -1,0 +1,26 @@
+<h1>URL Information</h1>
+
+<h2>Redirect Details</h2>
+
+<div>
+<span>Short URL: </span>
+<br>
+
+<span><%= @short_url %></span>
+</div>
+<br>
+
+<div>
+<span>Original URL:</span>
+<br>
+
+<span><%= @redirect.full_url %></span>
+</div>
+
+<h2>Visitor Details</h2>
+<% @redirect.visits.each do |visitor| %>
+  <div>
+    <span>ID: </span><span><%= visitor.id %></span>
+    <span>IP Address: </span><span><%= visitor.ip_address %></span>
+  </div>
+<% end %>
