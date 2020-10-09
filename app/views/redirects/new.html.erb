@@ -1,0 +1,15 @@
+<h1>Honey I Shrunk the URL</h1>
+
+<%= form_with model: @new_redirect do %>
+  <%= label_tag(:full_url, "Enter the URL you would like to shrink:") %>
+  <br>
+  <%= text_field_tag(:full_url) %>
+  <br>
+  <br>
+  <%= submit_tag("Shrink!") %>
+<% end %>
+
+<% if @short_url %>
+  <h2>Zap! Here is your shortened URL:</h2>
+  <%= link_to @short_url, @short_url %>
+<% end %>
